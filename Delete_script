@@ -1,0 +1,25 @@
+use sys;
+
+create table employee
+(
+emp_id numeric(22),
+emp_name varchar(100),
+Department_name varchar(100)
+);
+
+-- Command to set auto commit
+set autocommit=0;
+
+insert into employee (emp_id,emp_name,Department_name) values ('12345','clinton','accounts');
+insert into employee (emp_id,emp_name,Department_name) values ('12346','jessica','sales');
+insert into employee (emp_id,emp_name,Department_name) values ('12347','shan','production');
+insert into employee (emp_id,emp_name,Department_name) values ('12348','antony','quality');
+
+select * from employee;
+
+-- We can enable and disbale the sql safe update mode
+set sql_safe_updates=0;
+
+delete from employee;
+
+rollback;
