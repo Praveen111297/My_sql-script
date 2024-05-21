@@ -22,4 +22,10 @@ set sql_safe_updates=0;
 
 delete from employee;
 
+delete from employee where Department_name='accounts';
+
+delete from employee where Department_name in ('accounts','sales');
+
 rollback;
+
+commit;
