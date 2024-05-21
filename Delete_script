@@ -1,7 +1,9 @@
-use sys;
+create database Myconnection;
+
+use Myconnection;
 
 create table employee
-(
+(id int auto_increment primary key,
 emp_id numeric(22),
 emp_name varchar(100),
 Department_name varchar(100)
@@ -10,22 +12,43 @@ Department_name varchar(100)
 -- Command to set auto commit
 set autocommit=0;
 
-insert into employee (emp_id,emp_name,Department_name) values ('12345','clinton','accounts');
-insert into employee (emp_id,emp_name,Department_name) values ('12346','jessica','sales');
-insert into employee (emp_id,emp_name,Department_name) values ('12347','shan','production');
-insert into employee (emp_id,emp_name,Department_name) values ('12348','antony','quality');
+insert into employee (emp_id,emp_name,Department_name) values ('12345','clinton','accounts'),('12346','jessica','sales'),
+('12347','shan','production'), ('12348','antony','quality');
+
+commit;
 
 select * from employee;
 
+desc employee;
+show databases;
+show table status;
+show tables from myconnection;
+show columns from employee;
+show columns from employee from myconnection;
+------------------------------------------------------------------------------------
 -- We can enable and disbale the sql safe update mode
 set sql_safe_updates=0;
 
+update employee set Department_name='Marketing' where emp_name='clinton';
+commit;
+
+select * from employee;
+------------------------------------------------------------------------------------
+delete from employee where Department_name='Marketing';
+
 delete from employee;
 
-delete from employee where Department_name='accounts';
-
-delete from employee where Department_name in ('accounts','sales');
+select * from employee;
 
 rollback;
 
 commit;
+-----------------------------------------------------------------------------------
+alter table employee add department_no numeric(10);
+alter table employee modify department_no varchar(10);
+alter table employee change department_no dept_no numeric(10);
+
+------------------------------------------------------------------------------------
+truncate table employee;
+
+drop table employee;
